@@ -1,4 +1,21 @@
 """Assignment as a Python expression through overloading of <<.
+
+It would sometimes be useful (if not necessarily elegant) to have a
+Python expression that performs an assignment, for example in a lambda.
+Unfortunately, something such as `lambda arg: global x = arg` is not valid.
+Note that if `x` was a one-element list instead, then one could write `lambda
+arg: x.__setitem__(0, arg)`.
+
+The "mutable" module provides a similar functionality by providing "reference"
+types for which the "<<" operator is redefined so that `x = ref(0); x << 1`
+results in "1" being stored in `x`.  The previous case can then be written as
+`lambda arg: x << arg`.
+
+Note that `x` can also be used everywhere as a normal `int` (or the class of
+whatever object it stores) -- for example, `x + 1 == 2`, and `isinstance(x,
+int) == True`!  (See `test_mutable.py` for more examples).  Actually, a
+reference type will provide all the attributes and methods that the object it
+stores provides.
 """
 
 from collections import namedtuple as _namedtuple

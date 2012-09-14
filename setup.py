@@ -1,4 +1,5 @@
 from distutils.core import setup
+import mutable
 
 setup(
     name='mutable',
@@ -9,5 +10,5 @@ setup(
     url='http://github.com/anntzer/mutable',
     license='LICENSE.txt',
     description='Assignment as a Python expression through overloading of <<.',
-    long_description=open('README.md').read(),
+    long_description=mutable.__doc__,
 )
